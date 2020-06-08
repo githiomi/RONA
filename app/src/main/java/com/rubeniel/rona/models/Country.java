@@ -3,38 +3,41 @@ package com.rubeniel.rona.models;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import org.parceler.Parcel;
+
+@Parcel
 public class Country {
 
     @SerializedName("Country")
     @Expose
-    private String country;
+    public String country;
     @SerializedName("CountryCode")
     @Expose
-    private String countryCode;
+    public String countryCode;
     @SerializedName("Slug")
     @Expose
-    private String slug;
+    public String slug;
     @SerializedName("NewConfirmed")
     @Expose
-    private Integer newConfirmed;
+    public Integer newConfirmed;
     @SerializedName("TotalConfirmed")
     @Expose
-    private Integer totalConfirmed;
+    public Integer totalConfirmed;
     @SerializedName("NewDeaths")
     @Expose
-    private Integer newDeaths;
+    public Integer newDeaths;
     @SerializedName("TotalDeaths")
     @Expose
-    private Integer totalDeaths;
+    public Integer totalDeaths;
     @SerializedName("NewRecovered")
     @Expose
-    private Integer newRecovered;
+    public Integer newRecovered;
     @SerializedName("TotalRecovered")
     @Expose
-    private Integer totalRecovered;
+    public Integer totalRecovered;
     @SerializedName("Date")
     @Expose
-    private String date;
+    public String date;
 
     /**
      * No args constructor for use in serialization
