@@ -7,9 +7,14 @@ import android.util.Log;
 import android.widget.TextView;
 
 import com.rubeniel.rona.models.Country;
+import com.rubeniel.rona.models.RonaSearchResult;
 import com.rubeniel.rona.network.RonaApi;
 import com.rubeniel.rona.network.RonaClient;
 
+import org.json.JSONException;
+
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -43,28 +48,30 @@ public class MainActivity extends AppCompatActivity {
 
         RonaApi ronaApi = RonaClient.getClient();
 
-        Call< List<Country> > call = ronaApi.getCountryData();
+        Call<RonaSearchResult> ronaSearchResultCall = ronaApi.getCountryData();
 
-        call.enqueue(new Callback<List<Country>>() {
+        ronaSearchResultCall.enqueue(new Callback<RonaSearchResult>() {
             @Override
-            public void onResponse(Call<List<Country>> call, Response<List<Country>> response) {
+            public void onResponse(Call<RonaSearchResult> call, Response<RonaSearchResult> response) {
 
-                if (response.isSuccessful()) {
-                    Log.d(TAG, "onResponse: is successful");
+                if ( response.isSuccessful() ) {
+                    Log.d(TAG, "onResponse: is successful ------------------------");
 
-                    mCountries = response.body();
+                    mCountryNames = new ArrayList<>();
 
-                    for (int i = 0; i < mCountries.size(); i += 1) {
+                    mCountries = response.body().getCountries();
 
-                        Country country = mCountries.get(i);
+                    for ( int i = 0; i < mCountries.size(); i += 1 ) {
 
-                        String countryName = country.getCountry();
-                        Log.d(TAG, "onResponse; Name of the country is " + countryName);
+                        String countryName = mCountries.get(i).getCountry();
                         mCountryNames.add(countryName);
 
+                        Log.d(TAG, "onResponse: Country name: --------------------" + countryName);
                     }
-                } else {
-                    Log.d(TAG, "onResponse: not successful");
+
+
+                }else {
+                    Log.d(TAG, "onResponse: not successful ------------------------");
 
                     mOnlyTextView.setText("Not successful!");
 
@@ -73,8 +80,8 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<List<Country>> call, Throwable t) {
-                Log.d(TAG, "onFailure: " + t);
+            public void onFailure(Call<RonaSearchResult> call, Throwable t) {
+
             }
         });
     }

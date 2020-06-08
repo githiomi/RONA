@@ -1,6 +1,7 @@
 package com.rubeniel.rona.network;
 
 import com.rubeniel.rona.models.Country;
+import com.rubeniel.rona.models.RonaSearchResult;
 
 import java.util.List;
 
@@ -11,5 +12,5 @@ public interface RonaApi {
 
 //    Get method
     @GET("summary")
-    Call<List<Country>> getCountryData();
+    Call<RonaSearchResult> getCountryData();
 }
