@@ -10,6 +10,6 @@ import retrofit2.http.GET;
 public interface RonaApi {
 
 //    Get method
-    @GET("")
+    @GET("summary")
     Call<List<Country>> getCountryData();
 }
