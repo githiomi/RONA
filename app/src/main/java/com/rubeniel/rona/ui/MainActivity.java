@@ -1,19 +1,18 @@
-package com.rubeniel.rona;
+package com.rubeniel.rona.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
 
+import com.rubeniel.rona.R;
 import com.rubeniel.rona.models.Country;
 import com.rubeniel.rona.models.RonaSearchResult;
 import com.rubeniel.rona.network.RonaApi;
 import com.rubeniel.rona.network.RonaClient;
 
-import org.json.JSONException;
-
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
 
 //    Binding widgets
     @BindView(R.id.onlyView) TextView mOnlyTextView;
+    @BindView(R.id.rvCountires) RecyclerView mCountriesRecyclerView;
 
 //    Local variables
     List<Country> mCountries;
@@ -81,7 +81,8 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<RonaSearchResult> call, Throwable t) {
-
+                Log.d(TAG, "onFailure: Error -----------------" + t );
+                mOnlyTextView.setText("onFailure!");
             }
         });
     }
