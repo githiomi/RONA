@@ -5,16 +5,14 @@
     android:id="@+id/CountryItemView"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@android:color/white" >
+    android:background="@android:color/white"
+    android:padding="5dp">
 
     <TextView
         android:id="@+id/tvCountryCode"
         android:layout_width="98dp"
         android:layout_height="83dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="10dp"
         android:background="@android:color/black"
         android:padding="5dp"
         android:text="KE"
@@ -22,31 +20,16 @@
         android:textColor="@android:color/white"
         android:textSize="50sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/tvCountrySlug"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/tvCountrySlug"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="220dp"
-        android:layout_marginBottom="64dp"
-        android:text="TextView"
-        android:textColor="@android:color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/tvCountryCode"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.565" />
 
     <TextView
         android:id="@+id/tvCountryName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="24dp"
         android:layout_marginEnd="24dp"
-        android:layout_marginBottom="24dp"
+        android:layout_marginBottom="16dp"
         android:padding="5dp"
         android:text="Kenya"
         android:textAlignment="viewStart"
@@ -55,8 +38,18 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/tvCountryCode" />
+
+    <ImageView
+        android:id="@+id/ronaImage"
+        android:layout_width="47dp"
+        android:layout_height="45dp"
+        app:layout_constraintBottom_toTopOf="@+id/tvCountryName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.94"
         app:layout_constraintStart_toEndOf="@+id/tvCountryCode"
-        app:layout_constraintTop_toBottomOf="@+id/tvCountrySlug"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@android:drawable/ic_input_add" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

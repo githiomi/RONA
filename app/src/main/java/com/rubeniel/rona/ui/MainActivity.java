@@ -6,6 +6,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.rubeniel.rona.CountriesAdapter;
@@ -31,6 +33,8 @@ public class MainActivity extends AppCompatActivity {
 
 //    Binding widgets
     @BindView(R.id.rvCountires) RecyclerView mCountriesRecyclerView;
+    @BindView(R.id.progressBar) ProgressBar mProgressBar;
+    @BindView(R.id.tvError) TextView mError;
 
 //    Local variables
     List<Country> mCountries;
@@ -66,6 +70,8 @@ public class MainActivity extends AppCompatActivity {
 
                     mCountries = response.body().getCountries();
 
+                    showRetrievedData();
+
                     CountriesAdapter mCountriesAdapter = new CountriesAdapter(mCountries, getApplicationContext());
                     RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(MainActivity.this);
 
@@ -73,27 +79,34 @@ public class MainActivity extends AppCompatActivity {
                     mCountriesRecyclerView.setAdapter(mCountriesAdapter);
                     mCountriesRecyclerView.setHasFixedSize(true);
 
-//                    for ( int i = 0; i < mCountries.size(); i += 1 ) {
-//
-//                        String countryName = mCountries.get(i).getCountry();
-//                        mCountryNames.add(countryName);
-//
-//                        Log.d(TAG, "onResponse: Country name: --------------------" + countryName);
-//                    }
-
-
                 }else {
                     Log.d(TAG, "onResponse: not successful ------------------------");
+                    unSuccessfulResponse();
                 }
-
             }
 
             @Override
             public void onFailure(Call<RonaSearchResult> call, Throwable t) {
                 Log.d(TAG, "onFailure: Error -----------------" + t );
+                unSuccessfulRequest();
             }
         });
     }
 
+//    Custom method to make progress bar dissapear
+    public void showRetrievedData() {
+        mProgressBar.setVisibility(View.GONE);
+        mCountriesRecyclerView.setVisibility(View.VISIBLE);
+    }
+
+    public void unSuccessfulResponse() {
+        mProgressBar.setVisibility(View.GONE);
+        mError.setText("Unable to retrieve data from API");
+    }
+
+    public void unSuccessfulRequest() {
+        mProgressBar.setVisibility(View.GONE);
+        mError.setText("Unable to connect to API");
+    }
 
 }

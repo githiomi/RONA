@@ -4,14 +4,15 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.rubeniel.rona.models.Country;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,8 +57,8 @@ public class CountriesAdapter extends RecyclerView.Adapter<CountriesAdapter.Coun
 
 //        Binding views
         @BindView(R.id.tvCountryCode) TextView mCountryCode;
-        @BindView(R.id.tvCountrySlug) TextView mCountrySlug;
         @BindView(R.id.tvCountryName) TextView mCountryName;
+        @BindView(R.id.ronaImage) ImageView mImageView;
 
         public CountryViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -71,14 +72,16 @@ public class CountriesAdapter extends RecyclerView.Adapter<CountriesAdapter.Coun
         public void bindCountry(Country country){
 
             mCountryCode.setText(country.getCountryCode());
-            mCountrySlug.setText(country.getSlug());
             mCountryName.setText(country.getCountry());
+
+            Picasso.get().load(R.drawable.rona)
+                        .into(mImageView);
 
         }
 //Overriding the onclick method
     @Override
     public void onClick(View v) {
-        Toast.makeText(mContext, "Country: " + mCountryCode, Toast.LENGTH_SHORT).show();
+        Toast.makeText(mContext, "Country: " + mCountryName, Toast.LENGTH_SHORT).show();
     }
 }
 }
