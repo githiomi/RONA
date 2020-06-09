@@ -5,9 +5,7 @@
     android:id="@+id/CountryItemView"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@android:color/white"
-    android:padding="10dp">
-
+    android:background="@android:color/white" >
 
     <TextView
         android:id="@+id/tvCountryCode"
@@ -60,4 +58,5 @@
         app:layout_constraintStart_toEndOf="@+id/tvCountryCode"
         app:layout_constraintTop_toBottomOf="@+id/tvCountrySlug"
         app:layout_constraintVertical_bias="0.0" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,12 +1,14 @@
 package com.rubeniel.rona.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
 
+import com.rubeniel.rona.CountriesAdapter;
 import com.rubeniel.rona.R;
 import com.rubeniel.rona.models.Country;
 import com.rubeniel.rona.models.RonaSearchResult;
@@ -17,6 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -27,7 +30,6 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = MainActivity.class.getSimpleName();
 
 //    Binding widgets
-    @BindView(R.id.onlyView) TextView mOnlyTextView;
     @BindView(R.id.rvCountires) RecyclerView mCountriesRecyclerView;
 
 //    Local variables
@@ -38,6 +40,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+//        Butter knife binding
+        ButterKnife.bind(this);
 
         getCoronaData();
     }
@@ -61,20 +66,24 @@ public class MainActivity extends AppCompatActivity {
 
                     mCountries = response.body().getCountries();
 
-                    for ( int i = 0; i < mCountries.size(); i += 1 ) {
+                    CountriesAdapter mCountriesAdapter = new CountriesAdapter(mCountries, getApplicationContext());
+                    RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(MainActivity.this);
 
-                        String countryName = mCountries.get(i).getCountry();
-                        mCountryNames.add(countryName);
+                    mCountriesRecyclerView.setLayoutManager(layoutManager);
+                    mCountriesRecyclerView.setAdapter(mCountriesAdapter);
+                    mCountriesRecyclerView.setHasFixedSize(true);
 
-                        Log.d(TAG, "onResponse: Country name: --------------------" + countryName);
-                    }
+//                    for ( int i = 0; i < mCountries.size(); i += 1 ) {
+//
+//                        String countryName = mCountries.get(i).getCountry();
+//                        mCountryNames.add(countryName);
+//
+//                        Log.d(TAG, "onResponse: Country name: --------------------" + countryName);
+//                    }
 
 
                 }else {
                     Log.d(TAG, "onResponse: not successful ------------------------");
-
-                    mOnlyTextView.setText("Not successful!");
-
                 }
 
             }
@@ -82,7 +91,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<RonaSearchResult> call, Throwable t) {
                 Log.d(TAG, "onFailure: Error -----------------" + t );
-                mOnlyTextView.setText("onFailure!");
             }
         });
     }
