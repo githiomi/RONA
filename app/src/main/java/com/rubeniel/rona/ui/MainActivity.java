@@ -77,7 +77,8 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                return false;
+                mCountriesAdapter.getFilter().filter(newText);
+                return true;
             }
         });
         return true;
