@@ -1,9 +1,11 @@
-package com.rubeniel.rona;
+package com.rubeniel.rona.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -11,6 +13,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.rubeniel.rona.R;
 import com.rubeniel.rona.models.Country;
 import com.squareup.picasso.Picasso;
 
@@ -20,7 +23,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class CountriesAdapter extends RecyclerView.Adapter<CountriesAdapter.CountryViewHolder> {
+public class CountriesAdapter extends RecyclerView.Adapter<CountriesAdapter.CountryViewHolder> implements Filterable {
 
 //    TAG
     private static final String TAG = CountriesAdapter.class.getSimpleName();
@@ -52,7 +55,50 @@ public class CountriesAdapter extends RecyclerView.Adapter<CountriesAdapter.Coun
         return mCountries.size();
     }
 
-//    Nested class view holder
+//    To allow searching
+
+
+    @Override
+    public Filter getFilter() {
+        return countryFilter;
+    }
+
+    private Filter countryFilter = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+
+            List<Country> filteredCountries = new ArrayList<>();
+
+            if ( constraint == null || constraint.length() == 0 ){
+                filteredCountries.addAll(mCountries);
+            }else {
+
+                String searchInput = constraint.toString().toLowerCase().trim();
+
+                for ( Country filteredCountry : mCountries ){
+
+                    if ( filteredCountry.getCountry().toString().toLowerCase().startsWith(searchInput) ){
+                        filteredCountries.add(filteredCountry);
+                        searchInput = "";
+                    }
+                }
+            }
+
+            FilterResults filterResults = new FilterResults();
+            filterResults.values = filteredCountries;
+
+            return filterResults;
+        }
+
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+            mCountries.clear();
+            mCountries.addAll((List) results.values);
+            notifyDataSetChanged();
+        }
+    };
+
+    //    Nested class view holder
     public class CountryViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
 //        Binding views
