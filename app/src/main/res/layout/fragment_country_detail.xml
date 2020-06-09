@@ -12,7 +12,7 @@
         <ImageView
             android:id="@+id/ivCountryFlag"
             android:layout_width="match_parent"
-            android:layout_height="400dp"
+            android:layout_height="300dp"
             android:background="@drawable/rona" />
 
         <RelativeLayout
