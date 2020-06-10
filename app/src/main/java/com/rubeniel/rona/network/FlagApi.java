@@ -11,5 +11,5 @@ public interface FlagApi {
 
 //    Custom method to get the countries data
     @GET("all")
-    Call<List<FlagsSearchResult>> getFlags();
+    Call<FlagsSearchResult> getFlags();
 }

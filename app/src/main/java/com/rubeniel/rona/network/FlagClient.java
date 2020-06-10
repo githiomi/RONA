@@ -15,9 +15,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class FlagClient {
 
-    private static Retrofit retrofit = null;
+    public static Retrofit retrofit = null;
 
-    private static synchronized FlagApi getFlagClient() {
+    public static synchronized FlagApi getFlagClient() {
 
         if ( retrofit == null ){
 
