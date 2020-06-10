@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
     List<Country> mCountries;
     List<String> mCountryNames;
     CountriesAdapter mCountriesAdapter;
-    String mFlags;
+//    String mFlags;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         getCoronaData();
-        getFlagData();
+//        getFlagData();
     }
 
 //        Menu inflation
@@ -91,81 +91,81 @@ public class MainActivity extends AppCompatActivity {
 
 //    Custom method to get data from the API
     private void getCoronaData() {
-//        Log.d(TAG, "getCoronaData: init corona call");
-//
-//        RonaApi ronaApi = RonaClient.getClient();
-//
-//        Call<RonaSearchResult> ronaSearchResultCall = ronaApi.getCountryData();
-//
-//        ronaSearchResultCall.enqueue(new Callback<RonaSearchResult>() {
-//            @Override
-//            public void onResponse(Call<RonaSearchResult> call, Response<RonaSearchResult> response) {
-//
-//                if ( response.isSuccessful() ) {
-//                    Log.d(TAG, "onResponse: is successful ------------------------");
-//
-//                    mCountryNames = new ArrayList<>();
-//
-//                    mCountries = response.body().getCountries();
-//
-//                    showRetrievedData();
-//
-//                    mCountriesAdapter = new CountriesAdapter(mCountries, getApplicationContext());
-//                    RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(MainActivity.this);
-//
-//                    mCountriesRecyclerView.setLayoutManager(layoutManager);
-//                    mCountriesRecyclerView.setAdapter(mCountriesAdapter);
-//                    mCountriesRecyclerView.setHasFixedSize(true);
-//
-//                }else {
-//                    Log.d(TAG, "onResponse: not successful ------------------------");
-//                    unSuccessfulResponse();
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Call<RonaSearchResult> call, Throwable t) {
-//                Log.d(TAG, "onFailure: Error -----------------" + t );
-//                unSuccessfulRequest();
-//            }
-//        });
-    }
+        Log.d(TAG, "getCoronaData: init corona call");
 
-//    Custom method to get the country flags
-    private void getFlagData() {
-        Log.d(TAG, "getFlagData: Get flag init");
+        RonaApi ronaApi = RonaClient.getClient();
 
-        FlagApi flagClient = FlagClient.getFlagClient();
+        Call<RonaSearchResult> ronaSearchResultCall = ronaApi.getCountryData();
 
-        Call<FlagsSearchResult> flagsSearchResultCall = flagClient.getFlags();
-
-        flagsSearchResultCall.enqueue(new Callback<FlagsSearchResult>() {
+        ronaSearchResultCall.enqueue(new Callback<RonaSearchResult>() {
             @Override
-            public void onResponse(Call<FlagsSearchResult> call, Response<FlagsSearchResult> response) {
-                Log.d(TAG, "onResponse: Can get a response");
+            public void onResponse(Call<RonaSearchResult> call, Response<RonaSearchResult> response) {
 
-                if (response.isSuccessful()) {
+                if ( response.isSuccessful() ) {
+                    Log.d(TAG, "onResponse: is successful ------------------------");
+
+                    mCountryNames = new ArrayList<>();
+
+                    mCountries = response.body().getCountries();
+
                     showRetrievedData();
 
-                    mFlags = response.body().getFlag();
+                    mCountriesAdapter = new CountriesAdapter(mCountries, getApplicationContext());
+                    RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(MainActivity.this);
 
-                    Log.d(TAG, "onResponse: ---------------------------------- Flags:" + mFlags);
+                    mCountriesRecyclerView.setLayoutManager(layoutManager);
+                    mCountriesRecyclerView.setAdapter(mCountriesAdapter);
+                    mCountriesRecyclerView.setHasFixedSize(true);
 
-                } else {
-                    showRetrievedData();
-
-                    Log.d(TAG, "onResponse: Made call but got no data");
-
+                }else {
+                    Log.d(TAG, "onResponse: not successful ------------------------");
+                    unSuccessfulResponse();
                 }
-
             }
 
             @Override
-            public void onFailure(Call<FlagsSearchResult> call, Throwable t) {
-                Log.d(TAG, "onFailure: Can't get a response");
+            public void onFailure(Call<RonaSearchResult> call, Throwable t) {
+                Log.d(TAG, "onFailure: Error -----------------" + t );
+                unSuccessfulRequest();
             }
         });
     }
+
+//    Custom method to get the country flags
+//    private void getFlagData() {
+//        Log.d(TAG, "getFlagData: Get flag init");
+//
+//        FlagApi flagClient = FlagClient.getFlagClient();
+//
+//        Call<FlagsSearchResult> flagsSearchResultCall = flagClient.getFlags();
+//
+//        flagsSearchResultCall.enqueue(new Callback<FlagsSearchResult>() {
+//            @Override
+//            public void onResponse(Call<FlagsSearchResult> call, Response<FlagsSearchResult> response) {
+//                Log.d(TAG, "onResponse: Can get a response");
+//
+//                if (response.isSuccessful()) {
+//                    showRetrievedData();
+//
+//                    mFlags = response.body().getFlag();
+//
+//                    Log.d(TAG, "onResponse: ---------------------------------- Flags:" + mFlags);
+//
+//                } else {
+//                    showRetrievedData();
+//
+//                    Log.d(TAG, "onResponse: Made call but got no data");
+//
+//                }
+//
+//            }
+//
+//            @Override
+//            public void onFailure(Call<FlagsSearchResult> call, Throwable t) {
+//                Log.d(TAG, "onFailure: Can't get a response");
+//            }
+//        });
+//    }
 
 //    Custom method to make progress bar dissapear
     public void showRetrievedData() {
