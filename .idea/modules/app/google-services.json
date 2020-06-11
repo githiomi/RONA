@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "127866472653",
+    "firebase_url": "https://rona-7cf3f.firebaseio.com",
+    "project_id": "rona-7cf3f",
+    "storage_bucket": "rona-7cf3f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:127866472653:android:9328291e8b0b218b508184",
+        "android_client_info": {
+          "package_name": "com.rubeniel.rona"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "127866472653-v03mtanu1esflmh1g4veuook7evpjrch.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.rubeniel.rona",
+            "certificate_hash": "2a33798afa884db0f1348faec4404bdee5031f62"
+          }
+        },
+        {
+          "client_id": "127866472653-inv33n8m9hbe7rc4v2qq4f8faqjorrpm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAbhvtc01c-KOzLM2U_EtpfplEcPTp9zas"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "127866472653-inv33n8m9hbe7rc4v2qq4f8faqjorrpm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
