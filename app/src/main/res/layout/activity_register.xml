@@ -3,38 +3,60 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+<<<<<<< HEAD
     android:background="@drawable/doctor"
     android:gravity="center_vertical"
     android:orientation="vertical"
     android:padding="16dp"
+=======
+    android:gravity="center_vertical"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@drawable/doctor"
+>>>>>>> dev
     tools:context=".ui.RegisterActivity">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+<<<<<<< HEAD
         android:text="Register new account"
         android:textStyle="bold" />
+=======
+        android:text="Register new account" />
+>>>>>>> dev
 
     <EditText
         android:id="@+id/email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+<<<<<<< HEAD
         android:hint="Email"
         android:textStyle="bold" />
+=======
+        android:hint="Email" />
+>>>>>>> dev
 
     <EditText
         android:id="@+id/password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Password"
+<<<<<<< HEAD
         android:inputType="textPassword"
         android:textStyle="bold" />
+=======
+        android:inputType="textPassword" />
+>>>>>>> dev
 
     <Button
         android:id="@+id/register"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+<<<<<<< HEAD
         android:textStyle="bold"
+=======
+>>>>>>> dev
         android:text="Register" />
 
     <ProgressBar
