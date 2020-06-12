@@ -3,34 +3,38 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/doctor"
     android:gravity="center_vertical"
     android:orientation="vertical"
     android:padding="16dp"
-    android:background="@drawable/doctor"
     tools:context=".ui.RegisterActivity">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Register new account" />
+        android:text="Register new account"
+        android:textStyle="bold" />
 
     <EditText
         android:id="@+id/email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Email" />
+        android:hint="Email"
+        android:textStyle="bold" />
 
     <EditText
         android:id="@+id/password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Password"
-        android:inputType="textPassword" />
+        android:inputType="textPassword"
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/register"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textStyle="bold"
         android:text="Register" />
 
     <ProgressBar
